@@ -151,6 +151,7 @@ class TTSPlayer {
             <span class="doubao-tts-skip-icon">⏩</span>
             <span class="doubao-tts-skip-badge">5</span>
           </button>
+          <button class="doubao-tts-btn doubao-tts-download-btn" title="下载音频">⬇️</button>
         </div>
 
         <div class="doubao-tts-progress-container">
@@ -266,6 +267,18 @@ class TTSPlayer {
     if (forwardBtn) {
       forwardBtn.addEventListener('click', () => {
         this.audio.currentTime = Math.min(this.audio.duration, this.audio.currentTime + 5);
+      });
+    }
+
+    // 下载音频
+    const downloadBtn = player.querySelector('.doubao-tts-download-btn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        if (this.currentAudioUrl) {
+          this.downloadAudio(this.currentAudioUrl);
+        } else {
+          this.showToast('音频尚未准备好，请稍后再试', 'error');
+        }
       });
     }
 

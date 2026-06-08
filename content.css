@@ -167,7 +167,7 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 24px !important;
+  gap: 16px !important;
 }
 
 .doubao-tts-btn {
@@ -213,6 +213,19 @@
 
 .doubao-tts-skip-btn {
   position: relative !important;
+}
+
+.doubao-tts-download-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(107, 114, 128, 0.08) !important;
+  color: #6b7280 !important;
+}
+
+.doubao-tts-download-btn:hover {
+  background: rgba(99, 102, 241, 0.14) !important;
+  color: #5b52ff !important;
 }
 
 .doubao-tts-skip-badge {
