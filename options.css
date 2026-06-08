@@ -1,0 +1,257 @@
+/* options.css - 全页设置界面增强样式 */
+
+body {
+  width: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.options-page {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 24px 0 28px;
+}
+
+.options-hero {
+  padding: 22px 22px 18px;
+  margin-bottom: 18px;
+}
+
+.hero-top--wide {
+  margin-bottom: 18px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: var(--surface);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondary-action:hover {
+  transform: translateY(-1px);
+  color: var(--accent-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-copy--wide {
+  max-width: 760px;
+}
+
+.hero-row--wide h2 {
+  font-size: clamp(24px, 2.3vw, 34px);
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.metric-card {
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+[data-theme="dark"] .metric-card {
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.metric-label {
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.metric-card strong {
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.metric-unit {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.metric-card--note strong {
+  font-size: 20px;
+}
+
+.options-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 18px;
+}
+
+.info-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+[data-theme="dark"] .info-item {
+  background: rgba(15, 23, 42, 0.68);
+}
+
+.info-key {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.info-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sidebar-note {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(102, 126, 234, 0.08);
+  border: 1px solid rgba(102, 126, 234, 0.12);
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.sidebar-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.sidebar-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .sidebar-links a {
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.sidebar-links a:hover {
+  color: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.content-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.voice-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.voice-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.card--compact {
+  padding-top: 18px;
+}
+
+.actions-wide {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 2px;
+}
+
+.footer--wide {
+  margin-top: 16px;
+  padding-bottom: 0;
+}
+
+@media (max-width: 1080px) {
+  .options-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .options-page {
+    width: calc(100vw - 20px);
+    padding: 16px 0 20px;
+  }
+
+  .hero-top--wide,
+  .hero-row,
+  .hero-row--wide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-wide {
+    grid-template-columns: 1fr;
+  }
+}

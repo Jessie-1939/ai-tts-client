@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TTS teal badge">
+  <defs>
+    <linearGradient id="gTeal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#2DD4BF"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  <rect rx="56" width="512" height="512" fill="#071233"/>
+  <g transform="translate(56,72)">
+    <rect x="8" y="8" width="384" height="384" rx="40" fill="rgba(255,255,255,0.02)"/>
+    <text x="40" y="220" font-family="Inter, Arial, sans-serif" font-size="140" fill="url(#gTeal)" font-weight="800">TTS</text>
+    <path d="M24 300h336" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+  </g>
+</svg>

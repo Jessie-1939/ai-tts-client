@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-TTS Client - 配置</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <div class="container">
+    <!-- 顶部信息区 -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="logo">
+          <div class="logo-icon"><img src="icons/logo-mic.svg" alt="logo" width="48" height="48"></div>
+          <div class="logo-text">
+            <h1>AI-TTS Client</h1>
+            <p>A simple TTS client that works with your own API key</p>
+          </div>
+        </div>
+
+        <button type="button" class="theme-toggle" id="themeToggle" title="切换主题">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+
+      <div class="hero-copy">
+        <p class="hero-kicker">Modern TTS Settings</p>
+        <div class="hero-row">
+          <h2>更轻盈、更清晰的配置体验</h2>
+          <span class="hero-status" id="configStatus">待配置</span>
+        </div>
+        <p class="hero-description">快速填入密钥、切换音色、测试连接，所有设置都会安全保存在本地浏览器中。</p>
+      </div>
+
+      <div class="hero-chips">
+        <span class="chip">本地保存</span>
+        <span class="chip">15+ 音色</span>
+        <span class="chip">深浅色主题</span>
+      </div>
+    </header>
+
+    <!-- 统计卡片 -->
+    <section class="card card--stats">
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-label">今日合成</div>
+          <div class="stat-value" id="todayChars">0</div>
+          <div class="stat-unit">字符</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-label">历史总计</div>
+          <div class="stat-value" id="totalChars">0</div>
+          <div class="stat-unit">字符</div>
+        </div>
+      </div>
+      <p class="stats-note">※ 本地统计仅供参考，实际以火山引擎账单为准</p>
+    </section>
+
+    <!-- API配置 -->
+    <section class="card card--accent">
+      <div class="section-head">
+        <div>
+          <h2 class="card-title">
+            <span class="card-icon">🔑</span>
+            API 配置
+          </h2>
+          <p class="section-desc">填写任意支持的 TTS API Key（示例：火山引擎），即可开始使用。</p>
+        </div>
+        <span class="section-badge">必填</span>
+      </div>
+      
+      <div class="form-group" id="apiKeyInputGroup">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="请输入火山引擎 API Key" autocomplete="off">
+        <button class="toggle-password" id="togglePassword" type="button">👁️</button>
+        <p class="hint">仅需 API Key 即可完成鉴权，资源版本已固定为官方推荐版本。</p>
+      </div>
+
+      <div class="api-key-saved" id="apiKeySaved" style="display: none;">
+        <div class="saved-state">
+          <span class="saved-indicator">✅ API Key 已配置</span>
+          <span class="saved-meta">已保存在当前浏览器本地</span>
+        </div>
+        <button class="btn-edit" id="editApiKey">修改</button>
+      </div>
+
+      <p class="config-note">配置仅保存在当前浏览器本地，不会上传到第三方服务器。</p>
+    </section>
+
+    <!-- 语音配置 -->
+    <section class="card">
+      <div class="section-head">
+        <div>
+          <h2 class="card-title">
+            <span class="card-icon">🎵</span>
+            语音配置
+          </h2>
+          <p class="section-desc">为不同场景挑选音色，保存后立即生效。</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="voiceType">音色选择</label>
+        <select id="voiceType">
+          <optgroup label="通用场景">
+            <option value="zh_female_vv_uranus_bigtts">Vivi 2.0</option>
+            <option value="zh_female_xiaohe_uranus_bigtts">小何 2.0</option>
+            <option value="zh_male_m191_uranus_bigtts">云舟 2.0</option>
+            <option value="zh_male_taocheng_uranus_bigtts">小天 2.0</option>
+            <option value="zh_male_liufei_uranus_bigtts">刘飞 2.0</option>
+            <option value="zh_female_sophie_uranus_bigtts">魅力苏菲 2.0</option>
+            <option value="zh_female_qingxinnvsheng_uranus_bigtts">清新女声 2.0</option>
+            <option value="zh_female_tianmeixiaoyuan_uranus_bigtts">甜美小源 2.0</option>
+            <option value="zh_female_tianmeitaozi_uranus_bigtts">甜美桃子 2.0</option>
+            <option value="zh_female_shuangkuaisisi_uranus_bigtts">爽快思思 2.0</option>
+            <option value="zh_female_linjianvhai_uranus_bigtts">邻家女孩 2.0</option>
+            <option value="zh_male_shaonianzixin_uranus_bigtts">少年梓辛/Brayan 2.0</option>
+            <option value="zh_female_meilinvyou_uranus_bigtts">魅力女友 2.0</option>
+            <option value="zh_female_wenroumama_uranus_bigtts">温柔妈妈 2.0</option>
+            <option value="zh_male_jieshuoxiaoming_uranus_bigtts">解说小明 2.0</option>
+            <option value="zh_female_tvbnv_uranus_bigtts">TVB女声 2.0</option>
+            <option value="zh_male_yizhipiannan_uranus_bigtts">译制片男 2.0</option>
+            <option value="zh_female_qiaopinv_uranus_bigtts">俏皮女声 2.0</option>
+            <option value="zh_male_linjiananhai_uranus_bigtts">邻家男孩 2.0</option>
+            <option value="zh_male_ruyaqingnian_uranus_bigtts">儒雅青年 2.0</option>
+            <option value="zh_male_wennuanahu_uranus_bigtts">温暖阿虎/Alvin 2.0</option>
+            <option value="zh_male_naiqimengwa_uranus_bigtts">奶气萌娃 2.0</option>
+            <option value="zh_female_popo_uranus_bigtts">婆婆 2.0</option>
+            <option value="zh_female_gaolengyujie_uranus_bigtts">高冷御姐 2.0</option>
+            <option value="zh_male_aojiaobazong_uranus_bigtts">傲娇霸总 2.0</option>
+            <option value="zh_male_fanjuanqingnian_uranus_bigtts">反卷青年 2.0</option>
+            <option value="zh_female_wenroushunv_uranus_bigtts">温柔淑女 2.0</option>
+            <option value="zh_male_huolixiaoge_uranus_bigtts">活力小哥 2.0</option>
+            <option value="zh_female_mengyatou_uranus_bigtts">萌丫头/Cutey 2.0</option>
+            <option value="zh_female_tiexinnvsheng_uranus_bigtts">贴心女声/Candy 2.0</option>
+            <option value="zh_female_jitangmei_uranus_bigtts">鸡汤妹妹/Hope 2.0</option>
+            <option value="zh_male_cixingjieshuonan_uranus_bigtts">磁性解说男声/Morgan 2.0</option>
+            <option value="zh_male_liangsangmengzai_uranus_bigtts">亮嗓萌仔 2.0</option>
+            <option value="zh_female_kailangjiejie_uranus_bigtts">开朗姐姐 2.0</option>
+            <option value="zh_male_gaolengchenwen_uranus_bigtts">高冷沉稳 2.0</option>
+            <option value="zh_male_shenyeboke_uranus_bigtts">深夜播客 2.0</option>
+            <option value="zh_female_jiaochuannv_uranus_bigtts">娇喘女声 2.0</option>
+            <option value="zh_male_kailangdidi_uranus_bigtts">开朗弟弟 2.0</option>
+            <option value="zh_female_chanmeinv_uranus_bigtts">谄媚女声 2.0</option>
+            <option value="zh_female_qinqienv_uranus_bigtts">亲切女声 2.0</option>
+            <option value="zh_male_kuailexiaodong_uranus_bigtts">快乐小东 2.0</option>
+            <option value="zh_male_kailangxuezhang_uranus_bigtts">开朗学长 2.0</option>
+            <option value="zh_male_youyoujunzi_uranus_bigtts">悠悠君子 2.0</option>
+            <option value="zh_female_wenjingmaomao_uranus_bigtts">文静毛毛 2.0</option>
+            <option value="zh_female_zhixingnv_uranus_bigtts">知性女声 2.0</option>
+            <option value="zh_male_qingshuangnanda_uranus_bigtts">清爽男大 2.0</option>
+            <option value="zh_male_yuanboxiaoshu_uranus_bigtts">渊博小叔 2.0</option>
+            <option value="zh_male_yangguangqingnian_uranus_bigtts">阳光青年 2.0</option>
+            <option value="zh_female_qingchezizi_uranus_bigtts">清澈梓梓 2.0</option>
+            <option value="zh_female_tianmeiyueyue_uranus_bigtts">甜美悦悦 2.0</option>
+            <option value="zh_female_xinlingjitang_uranus_bigtts">心灵鸡汤 2.0</option>
+            <option value="zh_male_wenrouxiaoge_uranus_bigtts">温柔小哥 2.0</option>
+            <option value="zh_female_roumeinvyou_uranus_bigtts">柔美女友 2.0</option>
+            <option value="zh_male_dongfanghaoran_uranus_bigtts">东方浩然 2.0</option>
+            <option value="zh_female_wenrouxiaoya_uranus_bigtts">温柔小雅 2.0</option>
+            <option value="zh_male_tiancaitongsheng_uranus_bigtts">天才童声 2.0</option>
+            <option value="zh_male_guanggaojieshuo_uranus_bigtts">广告解说 2.0</option>
+          </optgroup>
+          <optgroup label="角色扮演">
+            <option value="zh_female_cancan_uranus_bigtts">知性灿灿 2.0</option>
+            <option value="zh_female_sajiaoxuemei_uranus_bigtts">撒娇学妹 2.0</option>
+            <option value="zh_female_zhishuaiyingzi_uranus_bigtts">直率英子 2.0</option>
+            <option value="zh_male_silang_uranus_bigtts">四郎 2.0</option>
+            <option value="zh_male_qingcang_uranus_bigtts">擎苍 2.0</option>
+            <option value="zh_male_xionger_uranus_bigtts">熊二 2.0</option>
+            <option value="zh_female_yingtaowanzi_uranus_bigtts">樱桃丸子 2.0</option>
+            <option value="zh_male_lanyinmianbao_uranus_bigtts">懒音绵宝 2.0</option>
+            <option value="zh_female_gufengshaoyu_uranus_bigtts">古风少御 2.0</option>
+            <option value="zh_male_lubanqihao_uranus_bigtts">鲁班七号 2.0</option>
+            <option value="zh_female_linxiao_uranus_bigtts">林潇 2.0</option>
+            <option value="zh_female_lingling_uranus_bigtts">玲玲姐姐 2.0</option>
+            <option value="zh_female_chunribu_uranus_bigtts">春日部姐姐 2.0</option>
+            <option value="zh_male_tangseng_uranus_bigtts">唐僧 2.0</option>
+            <option value="zh_male_zhuangzhou_uranus_bigtts">庄周 2.0</option>
+            <option value="zh_male_zhubajie_uranus_bigtts">猪八戒 2.0</option>
+            <option value="zh_female_ganmaodianyin_uranus_bigtts">感冒电音姐姐 2.0</option>
+            <option value="zh_female_nvleishen_uranus_bigtts">女雷神 2.0</option>
+            <option value="zh_female_wuzetian_uranus_bigtts">武则天 2.0</option>
+            <option value="zh_female_gujie_uranus_bigtts">顾姐 2.0</option>
+          </optgroup>
+          <optgroup label="视频配音">
+            <option value="zh_female_peiqi_uranus_bigtts">佩奇猪 2.0</option>
+            <option value="zh_male_sunwukong_uranus_bigtts">猴哥 2.0</option>
+            <option value="zh_male_dayi_uranus_bigtts">大壹 2.0</option>
+            <option value="zh_female_mizai_uranus_bigtts">黑猫侦探社咪仔 2.0</option>
+            <option value="zh_female_jitangnv_uranus_bigtts">鸡汤女 2.0</option>
+            <option value="zh_female_liuchangnv_uranus_bigtts">流畅女声 2.0</option>
+            <option value="zh_male_ruyayichen_uranus_bigtts">儒雅逸辰 2.0</option>
+          </optgroup>
+          <optgroup label="教育场景">
+            <option value="zh_female_yingyujiaoxue_uranus_bigtts">Tina老师 2.0</option>
+          </optgroup>
+          <optgroup label="客服场景">
+            <option value="zh_female_kefunvsheng_uranus_bigtts">暖阳女声 2.0</option>
+          </optgroup>
+          <optgroup label="有声阅读">
+            <option value="zh_female_xiaoxue_uranus_bigtts">儿童绘本 2.0</option>
+            <option value="zh_male_baqiqingshu_uranus_bigtts">霸气青叔 2.0</option>
+            <option value="zh_male_xuanyijieshuo_uranus_bigtts">悬疑解说 2.0</option>
+            <option value="zh_female_shaoergushi_uranus_bigtts">少儿故事 2.0</option>
+          </optgroup>
+          <optgroup label="多语种">
+            <option value="en_male_tim_uranus_bigtts">Tim</option>
+            <option value="en_female_dacey_uranus_bigtts">Dacey</option>
+            <option value="en_female_stokie_uranus_bigtts">Stokie</option>
+          </optgroup>
+        </select>
+      </div>
+    </section>
+
+    <!-- 操作按钮 -->
+    <div class="actions actions-horizontal">
+      <button class="btn btn-test" id="testBtn" type="button">
+        <span class="btn-icon">🔄</span>
+        测试连接
+      </button>
+
+      <button class="btn btn-primary" id="saveBtn" type="button">
+        <span class="btn-icon">💾</span>
+        保存设置
+      </button>
+    </div>
+
+    <!-- 底部链接 -->
+    <footer class="footer footer-centered">
+      <a href="https://www.volcengine.com/product/voice-tech" target="_blank" class="link">获取 API Key</a>
+      <span class="divider">|</span>
+      <a href="https://www.volcengine.com/docs/6561/1257584" target="_blank" class="link">使用文档</a>
+      <span class="divider">|</span>
+      <a href="user.md" target="_blank" rel="noreferrer" class="link">用户指南</a>
+      <span class="divider">|</span>
+      <a href="options.html" target="_blank" rel="noreferrer" class="link">完整设置页</a>
+    </footer>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

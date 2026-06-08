@@ -1,0 +1,451 @@
+/**
+ * AI-TTS Client - 内容脚本样式
+ * 设计标准：商业级顶级UI
+ * 核心特效：毛玻璃、精致阴影、平滑动画、微交互
+ */
+
+/* ==================== 语音播放器容器 ==================== */
+.doubao-tts-player {
+  position: fixed !important;
+  z-index: 999999 !important;
+  --doubao-tts-left: 50%;
+  --doubao-tts-top: auto;
+  --doubao-tts-bottom: 24px;
+  --doubao-tts-transform: translateX(-50%) translateY(24px);
+  left: var(--doubao-tts-left) !important;
+  top: var(--doubao-tts-top) !important;
+  bottom: var(--doubao-tts-bottom) !important;
+  transform: var(--doubao-tts-transform) !important;
+  width: min(560px, calc(100vw - 32px)) !important;
+  padding: 16px 20px !important;
+  border-radius: 18px !important;
+  
+  /* 毛玻璃核心效果 */
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  
+  /* 多层阴影营造悬浮感 */
+  box-shadow: 
+    0 8px 32px rgba(31, 38, 135, 0.15),
+    0 2px 8px rgba(31, 38, 135, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+  
+  /* 边框 */
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  
+  /* 动画 */
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  user-select: none !important;
+}
+
+/* 显示状态 */
+.doubao-tts-player.show {
+  --doubao-tts-transform: translateX(-50%) translateY(0);
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.doubao-tts-player.dragging {
+  transition: none !important;
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .doubao-tts-player {
+    background: rgba(30, 30, 40, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 2px 8px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset !important;
+  }
+}
+
+/* ==================== 头部区域 ==================== */
+/* ==================== 迷你悬浮条 ==================== */
+.doubao-tts-mini {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+/* ==================== 头部与关闭 ==================== */
+.doubao-tts-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  cursor: move !important;
+  user-select: none !important;
+}
+
+.doubao-tts-title {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #6b7280 !important;
+}
+
+.doubao-tts-close-btn {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 10px !important;
+  background: rgba(107, 114, 128, 0.12) !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+}
+
+.doubao-tts-close-btn:hover {
+  background: rgba(99, 102, 241, 0.16) !important;
+  color: #5b52ff !important;
+  transform: translateY(-1px) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .doubao-tts-title {
+    color: #d1d5db !important;
+  }
+
+  .doubao-tts-close-btn {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #e5e7eb !important;
+  }
+}
+
+/* ==================== 进度条区域 ==================== */
+/* ==================== 进度条区域 ==================== */
+.doubao-tts-progress-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.doubao-tts-progress-bar {
+  position: relative !important;
+  flex: 1 !important;
+  height: 4px !important;
+  background: rgba(107, 114, 128, 0.2) !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  overflow: visible !important;
+}
+
+.doubao-tts-progress-fill {
+  height: 100% !important;
+  background: linear-gradient(90deg, #7b6dff 0%, #7f59ff 50%, #8452ff 100%) !important;
+  border-radius: inherit !important;
+  width: 0% !important;
+  transition: width 0.1s linear !important;
+}
+
+.doubao-tts-progress-thumb {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0% !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  background: #7f59ff !important;
+  box-shadow: 0 4px 12px rgba(127, 89, 255, 0.45) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* 时间显示 */
+.doubao-tts-current,
+.doubao-tts-duration {
+  font-size: 12px !important;
+  color: #9ca3af !important;
+  font-weight: 500 !important;
+  min-width: 42px !important;
+}
+
+/* ==================== 控制按钮区域 ==================== */
+.doubao-tts-controls {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px !important;
+}
+
+.doubao-tts-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  background: transparent !important;
+  color: #6b7280 !important;
+  font-size: 15px !important;
+}
+
+.doubao-tts-btn:hover {
+  color: #5b52ff !important;
+  transform: translateY(-1px) !important;
+}
+
+.doubao-tts-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* 主播放按钮 */
+.doubao-tts-play-btn {
+  width: 48px !important;
+  height: 48px !important;
+  background: linear-gradient(135deg, #6f6dff 0%, #7f59ff 100%) !important;
+  color: white !important;
+  font-size: 18px !important;
+  box-shadow: 
+    0 6px 18px rgba(111, 109, 255, 0.35) !important;
+}
+
+.doubao-tts-play-btn:hover {
+  background: linear-gradient(135deg, #605bff 0%, #724bff 100%) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+}
+
+.doubao-tts-skip-btn {
+  position: relative !important;
+}
+
+.doubao-tts-skip-badge {
+  position: absolute !important;
+  top: -8px !important;
+  right: -8px !important;
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 999px !important;
+  background: rgba(107, 114, 128, 0.15) !important;
+  color: #6b7280 !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .doubao-tts-skip-badge {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #e5e7eb !important;
+  }
+}
+
+/* ==================== 速度/音量控制 ==================== */
+.doubao-tts-adjustments {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.doubao-tts-adjust {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.doubao-tts-label {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  min-width: 36px !important;
+}
+
+.doubao-tts-slider {
+  flex: 1 !important;
+  height: 6px !important;
+  border-radius: 999px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: rgba(107, 114, 128, 0.2) !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+.doubao-tts-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #6f6dff 0%, #7f59ff 100%) !important;
+  box-shadow: 0 4px 10px rgba(111, 109, 255, 0.35) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.doubao-tts-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12) !important;
+}
+
+.doubao-tts-slider::-moz-range-thumb {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #6f6dff 0%, #7f59ff 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 10px rgba(111, 109, 255, 0.35) !important;
+}
+
+.doubao-tts-value {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #7f59ff !important;
+  min-width: 48px !important;
+  text-align: right !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .doubao-tts-label {
+    color: #d1d5db !important;
+  }
+
+  .doubao-tts-slider {
+    background: rgba(255, 255, 255, 0.18) !important;
+  }
+
+  .doubao-tts-value {
+    color: #b9b3ff !important;
+  }
+}
+
+/* ==================== 加载动画 ==================== */
+.doubao-tts-loading {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 30px 20px !important;
+  gap: 16px !important;
+  text-align: center !important;
+}
+
+.doubao-tts-spinner {
+  width: 48px !important;
+  height: 48px !important;
+  border: 3px solid rgba(102, 126, 234, 0.1) !important;
+  border-top-color: #667eea !important;
+  border-radius: 50% !important;
+  animation: doubao-tts-spin 1s linear infinite !important;
+}
+
+@keyframes doubao-tts-spin {
+  to { transform: rotate(360deg) !important; }
+}
+
+.doubao-tts-loading-text {
+  font-size: 13px !important;
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+}
+
+.doubao-tts-loading-bar {
+  width: 100% !important;
+  height: 8px !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  background: rgba(102, 126, 234, 0.12) !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+.doubao-tts-loading-bar span {
+  display: block !important;
+  width: 35% !important;
+  height: 100% !important;
+  border-radius: inherit !important;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+  animation: doubao-tts-loading-slide 1.2s ease-in-out infinite !important;
+}
+
+@keyframes doubao-tts-loading-slide {
+  0% {
+    transform: translateX(-120%) !important;
+  }
+  50% {
+    transform: translateX(80%) !important;
+  }
+  100% {
+    transform: translateX(220%) !important;
+  }
+}
+
+/* 波形动画 */
+.doubao-tts-wave {
+  display: flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  height: 20px !important;
+}
+
+.doubao-tts-wave-bar {
+  width: 3px !important;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%) !important;
+  border-radius: 2px !important;
+  animation: doubao-tts-wave 0.8s ease-in-out infinite !important;
+}
+
+.doubao-tts-wave-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+.doubao-tts-wave-bar:nth-child(2) { animation-delay: 0.1s; height: 14px; }
+.doubao-tts-wave-bar:nth-child(3) { animation-delay: 0.2s; height: 10px; }
+.doubao-tts-wave-bar:nth-child(4) { animation-delay: 0.3s; height: 16px; }
+.doubao-tts-wave-bar:nth-child(5) { animation-delay: 0.4s; height: 12px; }
+
+@keyframes doubao-tts-wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+
+/* ==================== 错误提示 ==================== */
+.doubao-tts-error {
+  padding: 16px !important;
+  text-align: center !important;
+}
+
+.doubao-tts-error-icon {
+  font-size: 32px !important;
+  margin-bottom: 12px !important;
+}
+
+.doubao-tts-error-text {
+  font-size: 13px !important;
+  color: #ef4444 !important;
+  line-height: 1.5 !important;
+}
+
+/* ==================== Toast 提示 ==================== */
+.doubao-tts-toast {
+  position: fixed !important;
+  top: 24px !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(-20px) !important;
+  padding: 12px 24px !important;
+  border-radius: 12px !important;
+  background: rgba(30, 30, 40, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  color: white !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  z-index: 999999 !important;
+  opacity: 0 !important;
+  transition: all 0.3s ease !important;
+  pointer-events: none !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.doubao-tts-toast.show {
+  transform: translateX(-50%) translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.doubao-tts-toast.success {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%) !important;
+}
+
+.doubao-tts-toast.error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.9) 0%, rgba(220, 38, 38, 0.9) 100%) !important;
+}

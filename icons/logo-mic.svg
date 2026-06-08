@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Microphone logo with waveform">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+      <!-- 青涩蓝渐变 -->
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+  </defs>
+  <rect rx="48" width="512" height="512" fill="url(#g1)"/>
+  <g transform="translate(128,120)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- microphone body -->
+    <rect x="32" y="0" width="160" height="192" rx="80" fill="#fff" opacity="0.06"/>
+    <path d="M112 0v128" stroke="#fff" stroke-width="18"/>
+    <rect x="64" y="16" width="96" height="144" rx="48" stroke-width="12" stroke-opacity="0.98"/>
+    <!-- base -->
+    <path d="M40 208h144" stroke-width="16"/>
+    <path d="M112 208v48" stroke-width="14"/>
+    <!-- waveform -->
+    <g transform="translate(220,56) scale(0.9)">
+      <path d="M0 40 C10 10, 30 10, 40 40 C50 70, 70 70, 80 40 C90 10, 110 10, 120 40" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
