@@ -6,11 +6,13 @@
 新用户建议先读 `user.md`，它会把“怎么用、要做什么、隐私边界在哪”讲清楚。
 
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](./LICENSE)
-[![Microsoft Edge Add-ons](https://img.shields.io/badge/Edge%20Add--ons-ready-4c8bf5.svg)](#发布说明)
+[![Microsoft Edge Add-ons](https://img.shields.io/badge/Edge%20Add--ons-ready-4c8bf5.svg)](https://microsoftedge.microsoft.com/addons/detail/nlbnadbfphgboekjhljpaaaijackmlec)
 
 ---
 
 ## 🌟 核心特性
+
+> 当前扩展已发布于 Microsoft Edge Add-ons，版本为 **1.0.0**。你也可以直接通过商店页面安装。
 
 ### 🎨 视觉设计 - 现代、克制、清晰
 - **毛玻璃效果**：`backdrop-filter: blur(20px)` 半透明磨砂质感
@@ -51,12 +53,13 @@
 ### 方法一：通过 Microsoft Edge 插件商店安装（推荐）
 
 1.  打开 Microsoft Edge 浏览器。
-2.  点击右上角的“...”(更多) 菜单，选择“扩展”，或在地址栏直接访问 `edge://extensions/`，然后点击“**获取 Microsoft Edge 扩展**”[reference:0]。
-3.  在 Edge 插件商店搜索框中，输入 **AI TTS Client** 进行搜索。
+2.  点击右上角的“...”(更多) 菜单，选择“扩展”，或在地址栏直接访问 `edge://extensions/`，然后点击“**获取 Microsoft Edge 扩展**”。
+3.  在 Edge 插件商店搜索框中，输入 **AI TTS Client** 进行搜索，或者直接访问官方商店页面。
 4.  在搜索结果中找到本插件，点击“**获取**”按钮。
-5.  在弹出的权限确认窗口中，点击“**添加扩展**”即可完成安装[reference:1]。
+5.  在弹出的权限确认窗口中，点击“**添加扩展**”即可完成安装。
 
-> 💡 **直达链接**：你也可以直接点击 [**这里**](你的Edge商店链接) 访问插件在 Edge 商店的官方页面，一键安装。
+> 💡 **直达链接**：你也可以直接访问[Edge 商店页面](https://microsoftedge.microsoft.com/addons/detail/nlbnadbfphgboekjhljpaaaijackmlec) 
+
 
 ### 方法二：开发者模式安装（用于开发或调试）
 
